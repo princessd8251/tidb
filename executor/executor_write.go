@@ -1149,6 +1149,7 @@ func (e *UpdateExec) Next() (*Row, error) {
 		}
 		offset := e.getTableOffset(*entry)
 		handle := entry.Handle
+		log.Warnf("update row data len:%d, writable cols len:%d, offset:%d", len(row.Data), len(tbl.WritableCols()), offset)
 		oldData := row.Data[offset : offset+len(tbl.WritableCols())]
 		newTableData := newData[offset : offset+len(tbl.WritableCols())]
 		_, ok := e.updatedRowKeys[tbl][handle]
